@@ -1,4 +1,4 @@
-package com.unicuritiba.boleto.infrastructure.mappers;
+package com.unicuritiba.boleto;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
