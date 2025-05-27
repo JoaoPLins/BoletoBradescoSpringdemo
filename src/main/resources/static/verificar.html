@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Verificar Boleto</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    input, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .response {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: #eef;
+      border-radius: 8px;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Verificar Boleto</h2>
+    <input type="text" id="nome" placeholder="Nome do Beneficiário" />
+    <input type="text" id="boleto" placeholder="Número do Boleto" />
+    <button onclick="verificar()">Enviar</button>
+
+    <div class="response" id="resposta"></div>
+  </div>
+
+  <script>
+    async function verificar() {
+      const nome = document.getElementById("nome").value;
+      const boleto = document.getElementById("boleto").value;
+      const resposta = document.getElementById("resposta");
+
+      try {
+        const response = await fetch("/verificar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            nomeDoBeneficiario: nome,
+            numeroBoleto: boleto
+          })
+        });
+
+        const data = await response.json();
+        resposta.innerText = JSON.stringify(data, null, 2);
+      } catch (error) {
+        resposta.innerText = "Erro ao conectar com o servidor.";
+        console.error("Erro:", error);
+      }
+    }
+  </script>
+</body>
+</html>
