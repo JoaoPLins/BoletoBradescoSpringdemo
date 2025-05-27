@@ -36,6 +36,10 @@ public class ContasVerificadas {
     @NotNull(message = "A conta deve existir para ser verificada")
     private Integer ContaVerificada;
 
+    @Column(name = "alltheinfo")
+    @NotNull(message = "usar pra a vida ficar mais facil. agencia -> carteira -> Conta")
+    private Integer alltheinfo;
+
 
 
 

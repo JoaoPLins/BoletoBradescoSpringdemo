@@ -37,5 +37,5 @@ public class ContasVerificadasController {
     public ResponseEntity<ResponseEntity<?>> getContasVerificadas(@PathVariable long id){
         return ResponseEntity.ok(service.getContaVerficada(id));
     }
-
+    
 }
