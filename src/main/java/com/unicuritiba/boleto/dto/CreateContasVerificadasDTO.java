@@ -4,7 +4,8 @@ public record CreateContasVerificadasDTO(
         String nome,
         Integer agencia,
         Integer Carteira,
-        Integer ContaVerificada
+        Integer ContaVerificada,
+        Integer alltheinfo
 ) {
 
 }

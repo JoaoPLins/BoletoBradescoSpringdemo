@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface ContasVerificadasRepository extends JpaRepository<ContasVerificadas, Long> {
     Optional <ContasVerificadas>  findByNome(String nome);
+    Optional <ContasVerificadas>  findByAlltheinfo(int alltheinfo);
 }
