@@ -95,7 +95,7 @@ public class ContasVerificadasService {
             return ResponseEntity.ok(TheInformed);
 
         }
-        return ResponseEntity.ok("essa mensagem nao deve aparecer");
+        return ResponseEntity.ok("Dados nao batem");
 
 
     }
