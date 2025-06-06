@@ -32,17 +32,21 @@ public class ContasVerificadasService {
         contasVerificadas.setCarteira(body.Carteira());
         contasVerificadas.setNome(body.nome());
         contasVerificadas.setAlltheinfo(body.alltheinfo());
-
+        Integer Ident = body.alltheinfo();
         repository.save(contasVerificadas);
-
+        log.info("Conta Verificada adicionada:");
+        log.info(String.valueOf(Ident));
         return ResponseEntity.ok("ADDED!");
     }
 
     public ResponseEntity<List<ContasVerificadasDTO>> getallContasVerificadas() throws NotFoundException {
+        log.info("Usuario buscou contas Verificadas sem encontrar erros");
         return ResponseEntity.ok(repository.findAll().stream().map(mapper::toDTO).toList());
+
     }
 
     public ResponseEntity<?> getContaVerficada(Long id) throws NotFoundException{
+        log.info("Usuario buscou conta Verificada sem encontrar erros");
         return ResponseEntity.ok(repository.findById(id).stream().map(mapper::toDTO));
     }
 
@@ -80,6 +84,7 @@ public class ContasVerificadasService {
         Optional<ContasVerificadas> TheInformed = repository.findByAlltheinfo(infoInt);
 
         if(TheInformed.isEmpty()){
+            log.info("O boleto nao e de uma conta verificada.");
             return ResponseEntity.ok("esse boleto nao corresponde a conta listada");
         }
 
@@ -92,9 +97,11 @@ public class ContasVerificadasService {
 
 
         if (realname && realconta && realcarteira && realagencia){
+            log.info("Boleto Verificado com sucesso e retornado dados corretos");
             return ResponseEntity.ok(TheInformed);
 
         }
+        log.info("Boleto tem dados incorretos.");
         return ResponseEntity.ok("Dados nao batem");
 
 
